@@ -27,10 +27,10 @@ class USWeatherAppTests: XCTestCase {
     
     func testCityName() throws {
         // given
-        sut.cityNam = "New York"
-        sut.fetchWeather(by: sut.cityNam)
-        XCTAssertTrue(sut.cityNam.count > 0, "City name is not empty")
-        XCTAssertEqual(sut.cityNam, "New York", "Both are equal")
+        sut.cityName = "New York"
+        sut.fetchWeather(by: sut.cityName)
+        XCTAssertTrue(sut.cityName.count > 0, "City name is not empty")
+        XCTAssertEqual(sut.cityName, "New York", "Both are equal")
     }
     
     func testApiCallCompletes() throws {

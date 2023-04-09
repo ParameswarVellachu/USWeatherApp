@@ -18,9 +18,7 @@ private let defaultIcon = " ? "
 private let iconMap = ["Drizzle": "🌧", "Thunderstorm": "⛈", "Rain": "🌧", "Snow": "🌨", "Clear": "☀️", "Clouds": "☁️"]
 
 public class WeatherViewModel: ObservableObject {
-    
-    var cityNam: String = ""
-        
+            
     @Published var message: String = ""
     @Published var loadingState: LoadingState = .none
     
@@ -46,7 +44,7 @@ public class WeatherViewModel: ObservableObject {
                 self.cityName = weather.city
                 self.temperature = "\(weather.temperature)˚C"
                 self.weatherDescription = weather.description.capitalized
-                self.weatherIcon = iconMap[weather.iconName] ?? defaultIcon
+                self.weatherIcon = weather.iconName 
                 self.loadingState = .success
                
             }
@@ -58,7 +56,7 @@ extension WeatherViewModel {
     
     func fetchWeather(by city: String) {
         self.loadingState = .loading
-        if let city = self.cityNam.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+        if let city = city.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             self.weatherService.getWeather(city: city) { result in
                 switch result {
                 case .success(let weather):
